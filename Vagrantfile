@@ -7,6 +7,8 @@ end
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
+Vagrant.require_version ">= 1.8.5"
 Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -29,7 +31,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 9093, host: 9093
   # Prometheus Dashboard
   config.vm.network "forwarded_port", guest: 3000, host: 3000
-   
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -67,15 +69,15 @@ Vagrant.configure(2) do |config|
   #
   #   # Customize the amount of memory on the VM:
       vb.memory = "4048"
-      vb.cpus = 2 
+      vb.cpus = 2
    end
- 
+
   config.vm.provision "docker" do |docker|
   end
   config.vm.provision "get_dependencies", type: "shell",  path: "provisioning/get-dependencies.sh"
   config.vm.provision "docker_cache_images", type: "shell",  path: "provisioning/docker-cache-images.sh"
   config.vm.provision "lxc-containers", type: "shell",  path: "provisioning/lxc-containers.sh"
-  
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
