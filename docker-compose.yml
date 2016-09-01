@@ -2,19 +2,13 @@ version: '2'
 services:
   customerweb:
     image:
-      customerweb-image
+      customerweb
     ports:
-        - "8085:8085"
+        - "9094:8085"
     depends_on:
         - customerservice
-        - accountservice
   customerservice:
       image:
         customer-service-image
       ports:
-        - "8082:8082"
-  accountservice:
-      image:
-        account-service-image
-      ports:
-        -  "8080:8080"
+        - "8081:8082"
